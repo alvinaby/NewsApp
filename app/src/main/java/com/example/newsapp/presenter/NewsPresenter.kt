@@ -27,6 +27,4 @@ class NewsPresenter(private val view: ViewInterface): PresenterInterface {
             .subscribeOn(Schedulers.io())
             .subscribe{ result -> view.showNews(result) }
     }
-
-    //test
 }
