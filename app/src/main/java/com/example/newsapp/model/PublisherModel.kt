@@ -4,4 +4,5 @@ data class PublisherModel (
     val name: String,
     val url: String,
     val image: Image
-){ inner class Image(val url: String) }
+)
+data class Image (val publisherImage: String)
