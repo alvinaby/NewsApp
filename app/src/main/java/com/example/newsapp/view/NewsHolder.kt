@@ -6,24 +6,24 @@ import com.bumptech.glide.Glide
 import com.example.newsapp.model.NewsModel
 import kotlinx.android.synthetic.main.news_list.view.*
 
-class NewsHolder(newsView: View): RecyclerView.ViewHolder(newsView){
-    fun bind(newsItem: NewsModel) {
+class NewsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    fun bind(newsModel: NewsModel) {
         // Thumbnail
         Glide.with(itemView)
-            .load(newsItem.thumbnail)
+            .load(newsModel.thumbnail)
             .centerCrop()
             .into(itemView.news_img)
 
         // Title
-        itemView.news_title.text = newsItem.title
+        itemView.news_title.text = newsModel.title
 
         // Publisher
-        itemView.news_publisher.text = newsItem.publisher.name
+        itemView.news_publisher.text = newsModel.publisher.name
 
         // Open News
         itemView.setOnClickListener {
             if (itemView.context is ViewInterface) {
-                (itemView.context as ViewInterface).openNews(newsItem.url)
+                (itemView.context as ViewInterface).openNews(newsModel.url)
             }
         }
     }
