@@ -9,7 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-class NewsPresenter(private val view: ViewInterface): PresenterInterface {
+class Presenter(private val view: ViewInterface): PresenterInterface {
     private var disposable: Disposable? = null
 
     private fun create(): ApiClient {

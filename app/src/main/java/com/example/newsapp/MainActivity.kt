@@ -6,10 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.newsapp.model.NewsModel
-import com.example.newsapp.presenter.NewsPresenter
+import com.example.newsapp.model.News
+import com.example.newsapp.presenter.Presenter
 import com.example.newsapp.presenter.PresenterInterface
-import com.example.newsapp.view.NewsAdapter
+import com.example.newsapp.view.Adapter
 import com.example.newsapp.view.ViewInterface
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         setContentView(R.layout.activity_main)
 
         // News List
-        presenter = NewsPresenter(this)
+        presenter = Presenter(this)
         presenter.getNews()
 
         // Navigation Bar
@@ -41,10 +41,10 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         }
     }
 
-    override fun showNews(newsList: List<NewsModel>){
+    override fun showNews(newsList: List<News>){
         news_list.setHasFixedSize(true)
         news_list.layoutManager = LinearLayoutManager(this)
-        news_list.adapter = NewsAdapter(newsList)
+        news_list.adapter = Adapter(newsList)
     }
 
     override fun openNews(url: String) {
