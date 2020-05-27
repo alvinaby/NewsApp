@@ -50,9 +50,5 @@ class MainActivity : AppCompatActivity(), ViewInterface {
     override fun openNews(url: String) {
         val loadNews = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(loadNews)
-
-        /* val openNews = Intent(this@MainActivity, OpenNewsActivity::class.java)
-        openNews.putExtra(OpenNewsActivity.url, url)
-        startActivity(openNews) */
     }
 }

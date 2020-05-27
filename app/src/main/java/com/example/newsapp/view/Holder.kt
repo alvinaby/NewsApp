@@ -22,9 +22,7 @@ class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         // Open News
         itemView.setOnClickListener {
-            if (itemView.context is ViewInterface) {
-                (itemView.context as ViewInterface).openNews(news.url)
-            }
+            (itemView.context as ViewInterface).openNews(news.url)
         }
     }
 }
