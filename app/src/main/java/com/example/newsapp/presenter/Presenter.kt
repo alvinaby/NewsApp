@@ -11,18 +11,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class Presenter(private val view: ViewInterface): PresenterInterface {
     private var disposable: Disposable? = null
-
-    private fun create(): ApiClient {
-        val retrofit = Retrofit.Builder()
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://storage.googleapis.com/")
-            .build()
-        return retrofit.create(ApiClient::class.java)
-    }
+    private val apiClient = ApiClient.create().getNews()
 
     override fun getNews() {
-        disposable = create().getNews()
+        disposable = apiClient
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe{ result -> view.showNews(result) }
