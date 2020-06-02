@@ -12,13 +12,13 @@ class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         Glide.with(itemView)
             .load(news.thumbnail)
             .centerCrop()
-            .into(itemView.news_img)
+            .into(itemView.newsThumbnail)
 
         // Title
-        itemView.news_title.text = news.title
+        itemView.newsTitle.text = news.title
 
         // Publisher
-        itemView.news_publisher.text = news.publisher.name
+        itemView.newsPublisher.text = news.publisher.name
 
         // Open News
         itemView.setOnClickListener {

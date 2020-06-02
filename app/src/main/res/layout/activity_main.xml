@@ -5,36 +5,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lightGray"
     tools:context=".MainActivity">
 
     <!-- Header -->
-    <LinearLayout
+    <TextView
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/today_news"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:fontFamily="@font/product_sans_bold"
         android:padding="15dp"
-        android:background="@drawable/main_background"
-        android:layout_alignParentTop="true">
-
-        <TextView
-            android:id="@+id/welcome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/today_news"
-            android:textSize="20sp"
-            android:textColor="#000000"
-            android:fontFamily="@font/product_sans_bold"/>
-
-    </LinearLayout>
+        android:background="@color/semiBlue"
+        android:layout_alignParentTop="true"/>
 
     <!-- News List -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/news_list"
+        android:id="@+id/newsView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/header"
-        android:layout_above="@id/navbar"/>
+        android:layout_above="@id/navbar"
+        tools:listitem="@layout/news_list"/>
 
     <!-- Navigation Bar -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -42,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/main_background"
+        android:background="@color/semiBlue"
         app:menu="@menu/navbar_button"/>
 
 </RelativeLayout>

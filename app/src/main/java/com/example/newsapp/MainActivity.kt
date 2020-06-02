@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         navbar.setOnNavigationItemSelectedListener { menu ->
             when(menu.itemId){
                 R.id.home -> {
-                    news_list.smoothScrollToPosition(0)
+                    newsView.smoothScrollToPosition(0)
                 }
                 R.id.podcast -> {
                     Toast.makeText(this, "Podcast", Toast.LENGTH_SHORT).show()
@@ -42,9 +42,9 @@ class MainActivity : AppCompatActivity(), ViewInterface {
     }
 
     override fun showNews(newsList: List<News>){
-        news_list.setHasFixedSize(true)
-        news_list.layoutManager = LinearLayoutManager(this)
-        news_list.adapter = Adapter(newsList)
+        newsView.setHasFixedSize(true)
+        newsView.layoutManager = LinearLayoutManager(this)
+        newsView.adapter = Adapter(newsList)
     }
 
     override fun openNews(url: String) {
