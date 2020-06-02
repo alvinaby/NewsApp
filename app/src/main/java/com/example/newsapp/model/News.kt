@@ -7,4 +7,4 @@ data class News(
     val publish_time: String,
     val url: String,
     val publisher: Publisher
-)
+)   // test
