@@ -1,8 +1,7 @@
 package com.example.newsapp.model
 
-data class PublisherModel (
+data class Publisher (
     val name: String,
     val url: String,
     val image: Image
 )
-data class Image (val publisherImage: String)

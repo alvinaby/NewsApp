@@ -6,5 +6,5 @@ data class News(
     val thumbnail: String,
     val publish_time: String,
     val url: String,
-    val publisher: PublisherModel
+    val publisher: Publisher
 )
