@@ -1,14 +1,12 @@
 ﻿## NewsApp
-This is a simple Android app about news, and also my job interview test :D
+This is a simple Android app about news, and also my job interview test :D <br> This app is using MVP Architecture, Retrofit, RxJava, and Glide
 
-#### This app have functions:
+#### NewsApp functions:
 * View list of news
 * When user click a news, it will open the source (URL) of the news using Android built-in browser
 
-#### API used
+#### API used:
 * https://storage.googleapis.com/kurio-test/mobile-engineer-android/magazine/articles
-
-#### * This app is using MVP Architecture, Retrofit, RxJava, and Glide
 
 #### Library used:
 RecyclerView
