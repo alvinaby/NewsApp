@@ -9,7 +9,7 @@ This is a simple Android app about news, and also my job interview test :D <br> 
 * https://storage.googleapis.com/kurio-test/mobile-engineer-android/magazine/articles
 
 #### Library used:
-RecyclerView
+Material Design
 * `implementation 'com.android.support:design:29.0.0'`
 
 Retrofit
