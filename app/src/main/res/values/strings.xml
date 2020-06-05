@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">NewsApp</string>
     <string name="today_news">Today News</string>
-    <string name="news_title">News Title</string>
+    <string name="newsTitle">News Title</string>
     <string name="publisher">Publisher</string>
     <string name="home">Home</string>
     <string name="podcast">Podcast</string>
