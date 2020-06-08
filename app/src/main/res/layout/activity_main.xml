@@ -29,6 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/header"
         android:layout_above="@id/navbar"
+        android:paddingBottom="8dp"
+        android:clipToPadding="false"
         tools:listitem="@layout/news_list"/>
 
     <!-- Navigation Bar -->
