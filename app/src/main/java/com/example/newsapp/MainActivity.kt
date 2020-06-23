@@ -26,16 +26,10 @@ class MainActivity : AppCompatActivity(), ViewInterface {
 
         // Navigation Bar
         navbar.setOnNavigationItemSelectedListener { menu ->
-            when(menu.itemId){
-                R.id.home -> {
-                    newsView.smoothScrollToPosition(0)
-                }
-                R.id.podcast -> {
-                    Toast.makeText(this, "Podcast", Toast.LENGTH_SHORT).show()
-                }
-                R.id.account -> {
-                    Toast.makeText(this, "Account", Toast.LENGTH_SHORT).show()
-                }
+            when (menu.itemId) {
+                R.id.home -> newsView.smoothScrollToPosition(0)
+                R.id.podcast -> Toast.makeText(this, "Podcast", Toast.LENGTH_SHORT).show()
+                R.id.account -> Toast.makeText(this, "Account", Toast.LENGTH_SHORT).show()
             }
             true
         }
