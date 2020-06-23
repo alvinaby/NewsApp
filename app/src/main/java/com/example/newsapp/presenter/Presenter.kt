@@ -12,8 +12,8 @@ class Presenter(private val view: ViewInterface): PresenterInterface {
 
     override fun getNews() {
         disposable = apiClient
-            .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe{ result -> view.showNews(result) }
     }
 }
