@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightGray"
+    android:background="?attr/newsBg"
     tools:context=".MainActivity">
 
     <!-- Header -->
@@ -13,14 +13,14 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:padding="15dp"
         android:gravity="center"
         android:text="@string/today_news"
         android:textSize="20sp"
-        android:textColor="#000000"
+        android:textColor="?attr/textColor"
         android:fontFamily="@font/product_sans_bold"
-        android:padding="15dp"
-        android:background="@color/semiBlue"
-        android:layout_alignParentTop="true"/>
+        android:background="?attr/header"/>
 
     <!-- News List -->
     <androidx.recyclerview.widget.RecyclerView
@@ -39,7 +39,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/semiBlue"
+        android:background="?attr/navbar"
+        app:itemIconTint="?attr/navbarIcon"
+        app:itemTextColor="?attr/navbarText"
         app:menu="@menu/navbar_button"/>
 
 </RelativeLayout>

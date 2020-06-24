@@ -3,9 +3,33 @@
     <color name="colorPrimary">#00468b</color>
     <color name="colorPrimaryDark">#00003F</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="black">#000000</color>
-    <color name="white">#FFFFFF</color>
+
+    <!-- Header -->
+    <color name="headerLight">#F0FFFF</color>
+    <color name="headerDark">#22252b</color>
+
+    <!-- News background-->
+    <color name="newsBgLight">#EDEDED</color>
+    <color name="newsBgDark">#3A3B3D</color>
+
+    <!-- Navbar -->
+    <color name="navbarLight">#F0FFFF</color>
+    <color name="navbarIconLight">#000000</color>
+    <color name="navbarTextLight">#000000</color>
+
+    <color name="navbarDark">#22252b</color>
+    <color name="navbarIconDark">#FFFFFF</color>
+    <color name="navbarTextDark">#FFFFFF</color>
+
+    <!-- Image -->
     <color name="gray">#818FA6</color>
-    <color name="semiBlue">#F0FFFF</color>
-    <color name="lightGray">#EDEDED</color>
+
+    <!-- Text -->
+    <color name="textBlack">#000000</color>
+    <color name="textWhite">#FFFFFF</color>
+
+    <!-- Text background -->
+    <color name="textBgLight">#FFFFFF</color>
+    <color name="textBgDark">#000000</color>
+
 </resources>

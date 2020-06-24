@@ -11,7 +11,7 @@
     app:cardCornerRadius="15dp"
     app:cardElevation="4dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -27,8 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
-            android:layout_below="@id/newsThumbnail">
+            android:background="?attr/textBg"
+            android:padding="16dp">
 
             <TextView
                 android:id="@+id/newsTitle"
@@ -37,7 +37,7 @@
                 android:text="@string/newsTitle"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textColor="?attr/textColor"/>
 
             <TextView
                 android:id="@+id/newsPublisher"
@@ -45,10 +45,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="@string/publisher"
-                android:textSize="14sp"/>
+                android:textSize="14sp"
+                android:textColor="?attr/textColor"/>
 
         </LinearLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

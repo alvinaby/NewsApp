@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity(), ViewInterface {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.LightTheme)
         setContentView(R.layout.activity_main)
 
         // News List

@@ -1,11 +1,29 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="LightTheme" parent="AppTheme">
+        <item name="header">@color/headerLight</item>
+        <item name="newsBg">@color/newsBgLight</item>
+        <item name="navbar">@color/navbarLight</item>
+        <item name="navbarIcon">@color/navbarIconLight</item>
+        <item name="navbarText">@color/navbarTextLight</item>
+        <item name="textColor">@color/textBlack</item>
+        <item name="textBg">@color/textBgLight</item>
+    </style>
+
+    <style name="DarkTheme" parent="AppTheme">
+        <item name="header">@color/headerDark</item>
+        <item name="newsBg">@color/newsBgDark</item>
+        <item name="navbar">@color/navbarDark</item>
+        <item name="navbarIcon">@color/navbarIconDark</item>
+        <item name="navbarText">@color/navbarTextDark</item>
+        <item name="textColor">@color/textWhite</item>
+        <item name="textBg">@color/textBgDark</item>
     </style>
 
 </resources>
