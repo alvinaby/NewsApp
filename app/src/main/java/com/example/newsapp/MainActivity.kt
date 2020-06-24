@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsapp.model.News
 import com.example.newsapp.presenter.Presenter
@@ -19,6 +20,12 @@ class MainActivity : AppCompatActivity(), ViewInterface {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+//            setTheme(R.style.DarkTheme)
+//        } else {
+//            setTheme(R.style.LightTheme)
+//        }
+
         setTheme(R.style.DarkTheme)
         setContentView(R.layout.activity_main)
 

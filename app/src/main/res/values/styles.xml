@@ -6,6 +6,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Application Light Mode -->
     <style name="LightTheme" parent="AppTheme">
         <item name="header">@color/headerLight</item>
         <item name="newsBg">@color/newsBgLight</item>
@@ -15,6 +16,7 @@
         <item name="textBg">@color/textBgLight</item>
     </style>
 
+    <!-- Application DarkMode -->
     <style name="DarkTheme" parent="AppTheme">
         <item name="header">@color/headerDark</item>
         <item name="newsBg">@color/newsBgDark</item>
