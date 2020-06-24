@@ -1,5 +1,6 @@
 package com.example.newsapp.presenter
 
+import android.util.Log
 import com.example.newsapp.api.ApiService
 import com.example.newsapp.view.ViewInterface
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -14,6 +15,9 @@ class Presenter(private val view: ViewInterface): PresenterInterface {
         disposable = apiGetNews
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe{ result -> view.showNews(result) }
+            .subscribe(
+                { result -> view.onSuccess(result) },
+                { view.onError() }
+            )
     }
 }

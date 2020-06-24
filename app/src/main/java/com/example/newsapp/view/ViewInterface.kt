@@ -3,6 +3,7 @@ package com.example.newsapp.view
 import com.example.newsapp.model.News
 
 interface ViewInterface {
-    fun showNews(newsList: List<News>)
+    fun onSuccess(newsList: List<News>)
+    fun onError()
     fun openNews(url: String)
 }

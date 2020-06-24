@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsapp.model.News
@@ -35,10 +36,16 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         }
     }
 
-    override fun showNews(newsList: List<News>){
+    override fun onSuccess(newsList: List<News>){
         newsView.setHasFixedSize(true)
         newsView.layoutManager = LinearLayoutManager(this)
         newsView.adapter = Adapter(newsList)
+    }
+
+    override fun onError() {
+        val toast = Toast.makeText(this, "No news found, please check your connection", Toast.LENGTH_LONG)
+        toast.setGravity(Gravity.CENTER, 0, 0)
+        toast.show()
     }
 
     override fun openNews(url: String) {
