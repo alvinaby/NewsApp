@@ -8,10 +8,10 @@ import io.reactivex.schedulers.Schedulers
 
 class Presenter(private val view: ViewInterface): PresenterInterface {
     private var disposable: Disposable? = null
-    private val apiClient = ApiService().retrofit().getNews()
+    private val apiGetNews = ApiService().retrofit().getNews()
 
     override fun getNews() {
-        disposable = apiClient
+        disposable = apiGetNews
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe{ result -> view.showNews(result) }
