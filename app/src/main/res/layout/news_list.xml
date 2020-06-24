@@ -20,7 +20,7 @@
             android:id="@+id/newsThumbnail"
             android:layout_width="match_parent"
             android:layout_height="220dp"
-            android:background="@drawable/image_bg"
+            android:background="@color/gray"
             tools:ignore="ContentDescription" />
 
         <LinearLayout
