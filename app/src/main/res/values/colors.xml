@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#00003F</color>
     <color name="colorAccent">#03DAC5</color>
 
+    <color name="gray">#818FA6</color>
+
     <!-- Header -->
     <color name="headerLight">#F0FFFF</color>
     <color name="headerDark">#22252b</color>
@@ -15,14 +17,9 @@
     <!-- Navbar -->
     <color name="navbarLight">#F0FFFF</color>
     <color name="navbarIconLight">#000000</color>
-    <color name="navbarTextLight">#000000</color>
 
     <color name="navbarDark">#22252b</color>
     <color name="navbarIconDark">#FFFFFF</color>
-    <color name="navbarTextDark">#FFFFFF</color>
-
-    <!-- Image -->
-    <color name="gray">#818FA6</color>
 
     <!-- Text -->
     <color name="textBlack">#000000</color>

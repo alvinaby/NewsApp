@@ -30,8 +30,7 @@
         android:layout_below="@+id/header"
         android:layout_above="@id/navbar"
         android:paddingBottom="8dp"
-        android:clipToPadding="false"
-        tools:listitem="@layout/news_list"/>
+        android:clipToPadding="false"/>
 
     <!-- Navigation Bar -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -40,8 +39,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="?attr/navbar"
-        app:itemIconTint="?attr/navbarIcon"
-        app:itemTextColor="?attr/navbarText"
+        app:itemIconTint="@drawable/navbar_button_color"
+        app:itemTextColor="@drawable/navbar_button_color"
         app:menu="@menu/navbar_button"/>
 
 </RelativeLayout>
