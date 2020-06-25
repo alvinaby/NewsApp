@@ -62,8 +62,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/navbar"
-        app:itemIconTint="@color/navbarIcon"
-        app:itemTextColor="@color/navbarIcon"
+        app:itemIconTint="@drawable/navbar_icon_color"
+        app:itemTextColor="@drawable/navbar_icon_color"
         app:menu="@menu/navbar_button"/>
 
 </RelativeLayout>
