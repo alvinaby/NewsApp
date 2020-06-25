@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="?attr/textBg"
+            android:background="@color/textBg"
             android:padding="16dp">
 
             <TextView
@@ -35,9 +35,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/newsTitle"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="?attr/textColor"/>
+                android:textColor="@color/text"/>
 
             <TextView
                 android:id="@+id/newsPublisher"
@@ -46,7 +46,7 @@
                 android:layout_marginTop="4dp"
                 android:text="@string/publisher"
                 android:textSize="14sp"
-                android:textColor="?attr/textColor"/>
+                android:textColor="@color/text"/>
 
         </LinearLayout>
 

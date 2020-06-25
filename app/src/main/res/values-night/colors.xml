@@ -7,19 +7,19 @@
     <color name="gray">#818FA6</color>
 
     <!-- Header -->
-    <color name="header">#F0FFFF</color>
+    <color name="header">#22252B</color>
 
     <!-- News background-->
-    <color name="newsBg">#EDEDED</color>
+    <color name="newsBg">#000000</color>
 
     <!-- Navbar -->
-    <color name="navbar">#F0FFFF</color>
-    <color name="navbarIcon">#000000</color>
+    <color name="navbar">#22252b</color>
+    <color name="navbarIcon">#FFFFFF</color>
 
     <!-- Text -->
-    <color name="text">#000000</color>
+    <color name="text">#FFFFFF</color>
 
     <!-- Text background -->
-    <color name="textBg">#FFFFFF</color>
+    <color name="textBg">#22252B</color>
 
 </resources>

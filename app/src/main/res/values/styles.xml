@@ -4,26 +4,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
 
-    <!-- Application Light Mode -->
-    <style name="LightTheme" parent="AppTheme">
-        <item name="header">@color/headerLight</item>
-        <item name="newsBg">@color/newsBgLight</item>
-        <item name="navbar">@color/navbarLight</item>
-        <item name="navbarIcon">@color/navbarIconLight</item>
-        <item name="textColor">@color/textBlack</item>
-        <item name="textBg">@color/textBgLight</item>
-    </style>
-
-    <!-- Application DarkMode -->
-    <style name="DarkTheme" parent="AppTheme">
-        <item name="header">@color/headerDark</item>
-        <item name="newsBg">@color/newsBgDark</item>
-        <item name="navbar">@color/navbarDark</item>
-        <item name="navbarIcon">@color/navbarIconDark</item>
-        <item name="textColor">@color/textWhite</item>
-        <item name="textBg">@color/textBgDark</item>
+    <!-- Application transition -->
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
 </resources>

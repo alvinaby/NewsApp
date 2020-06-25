@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
+import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,9 +21,8 @@ class MainActivity : AppCompatActivity(), ViewInterface {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        setTheme(R.style.DarkTheme)
         setContentView(R.layout.activity_main)
+        setThemeState()
 
         // News List
         presenter = Presenter(this)
@@ -36,6 +36,22 @@ class MainActivity : AppCompatActivity(), ViewInterface {
                 R.id.account -> Toast.makeText(this, "Account", Toast.LENGTH_SHORT).show()
             }
             true
+        }
+    }
+
+    private fun setThemeState() {
+        val themeSwitch = findViewById<Switch>(R.id.themeSwitch)
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+            themeSwitch.isChecked = true
+
+        themeSwitch.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <attr name="header" format="color"/>
-    <attr name="newsBg" format="color"/>
-    <attr name="navbar" format="color"/>
-    <attr name="navbarIcon" format="color"/>
-    <attr name="textColor" format="color"/>
-    <attr name="textBg" format="color"/>
-</resources>
