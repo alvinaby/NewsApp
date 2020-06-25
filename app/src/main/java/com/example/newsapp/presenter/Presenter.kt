@@ -9,15 +9,16 @@ import io.reactivex.schedulers.Schedulers
 
 class Presenter(private val view: ViewInterface): PresenterInterface {
     private val apiClient = ApiService().retrofit()
-    private var disposable: Disposable? = null
+    private var compositeDisposable = CompositeDisposable()
 
     override fun getNews() {
-        disposable = apiClient.getNews()
+        compositeDisposable.add(apiClient.getNews()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { result -> view.onSuccess(result) },
                 { view.onError() }
             )
+        )
     }
 }

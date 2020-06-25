@@ -22,6 +22,30 @@
         android:fontFamily="@font/product_sans_bold"
         android:background="?attr/header"/>
 
+    <!--
+    <LinearLayout
+        android:id="@+id/themeBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dark Mode"
+            android:textColor="?attr/textColor"/>
+
+        <Switch
+            android:id="@+id/switchTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginStart="6dp" />
+    </LinearLayout>
+    -->
+
     <!-- News List -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/newsView"
