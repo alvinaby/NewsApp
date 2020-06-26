@@ -22,35 +22,24 @@
         android:fontFamily="@font/product_sans_bold"
         android:background="@color/header"/>
 
-    <LinearLayout
-        android:id="@+id/themeBar"
-        android:layout_width="match_parent"
+    <!-- Theme -->
+    <Button
+        android:id="@+id/themeBtn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/header"
-        android:padding="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/themeMode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dark Mode"
-            android:textColor="@color/text"/>
-
-        <Switch
-            android:id="@+id/themeSwitch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
-            android:layout_marginStart="4dp" />
-    </LinearLayout>
+        android:padding="12dp"
+        android:background="@android:color/transparent"
+        android:text="@string/change_theme"
+        android:textColor="@color/text"
+        android:textAllCaps="false"/>
 
     <!-- News List -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/newsView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/themeBar"
+        android:layout_below="@+id/themeBtn"
         android:layout_above="@id/navbar"
         android:paddingBottom="8dp"
         android:clipToPadding="false"/>

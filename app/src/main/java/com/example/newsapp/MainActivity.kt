@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.Gravity
 import android.widget.Switch
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsapp.model.News
@@ -22,7 +23,8 @@ class MainActivity : AppCompatActivity(), ViewInterface {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setThemeState()
+
+        themeBtn.setOnClickListener { changeTheme() }
 
         // News List
         presenter = Presenter(this)
@@ -39,20 +41,21 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         }
     }
 
-    private fun setThemeState() {
-        val themeSwitch = findViewById<Switch>(R.id.themeSwitch)
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
-            themeSwitch.isChecked = true
+    private fun changeTheme() {
+        val themeDialog = AlertDialog.Builder(this)
+        themeDialog.setTitle("Choose Theme")
+        val theme = arrayOf("System default", "Light", "Dark")
+        val chooseItem = 0
 
-        themeSwitch.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        themeDialog.setSingleChoiceItems(theme, chooseItem) { dialog, which ->
+            when (which) {
+                0 -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                1 -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                2 -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             }
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+            dialog.dismiss()
         }
+        themeDialog.create().show()
     }
 
     override fun onSuccess(newsList: List<News>){

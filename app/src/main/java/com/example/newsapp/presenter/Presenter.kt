@@ -21,4 +21,8 @@ class Presenter(private val view: ViewInterface): PresenterInterface {
             )
         )
     }
+
+    override fun disposeNews() {
+        compositeDisposable.dispose()
+    }
 }
