@@ -5,7 +5,6 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
-import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
@@ -23,8 +22,8 @@ class MainActivity : AppCompatActivity(), ViewInterface {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        themeBtn.setOnClickListener { changeTheme() }
+        ThemePref(this).checkTheme()
+        themeBtn.setOnClickListener { ThemePref(this).changeTheme() }
 
         // News List
         presenter = Presenter(this)
@@ -39,23 +38,6 @@ class MainActivity : AppCompatActivity(), ViewInterface {
             }
             true
         }
-    }
-
-    private fun changeTheme() {
-        val themeDialog = AlertDialog.Builder(this)
-        themeDialog.setTitle("Choose Theme")
-        val theme = arrayOf("System default", "Light", "Dark")
-        val chooseItem = 0
-
-        themeDialog.setSingleChoiceItems(theme, chooseItem) { dialog, which ->
-            when (which) {
-                0 -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                1 -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                2 -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            }
-            dialog.dismiss()
-        }
-        themeDialog.create().show()
     }
 
     override fun onSuccess(newsList: List<News>){
