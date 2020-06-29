@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity(), ViewInterface {
 
         // News List
         presenter = Presenter(this)
-        presenter.getNews()
+        presenter.loadNews()
 
         // Navigation Bar
         navbar.setOnNavigationItemSelectedListener { menu ->
