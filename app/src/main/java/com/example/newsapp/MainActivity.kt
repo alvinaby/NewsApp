@@ -40,6 +40,12 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter = Presenter(this)
+        presenter.disposeNews()
+    }
+
     override fun onSuccess(newsList: List<News>){
         newsView.setHasFixedSize(true)
         newsView.layoutManager = LinearLayoutManager(this)
