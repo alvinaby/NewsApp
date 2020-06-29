@@ -9,7 +9,7 @@ import io.reactivex.schedulers.Schedulers
 class NewsRepo : NewsRepoInterface {
     private val apiClient = ApiService().retrofit()
 
-    override fun getData(): Observable<List<News>> {
+    override fun getNews(): Observable<List<News>> {
         return apiClient.getNews()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
