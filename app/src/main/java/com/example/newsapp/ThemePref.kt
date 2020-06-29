@@ -9,8 +9,7 @@ class ThemePref(context: Context) {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("ThemeMode", Context.MODE_PRIVATE)
     private val themeKey = "theme_type"
     private val themeDialog = AlertDialog.Builder(context)
-
-    var darkMode = sharedPreferences.getInt(themeKey, 0)
+    private var darkMode = sharedPreferences.getInt(themeKey, 0)
     set(value) = sharedPreferences.edit().putInt(themeKey, value).apply()
 
     fun checkTheme() {
