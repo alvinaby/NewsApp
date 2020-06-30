@@ -4,14 +4,15 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import com.example.newsapp.model.News
 import com.example.newsapp.presenter.Presenter
 import com.example.newsapp.presenter.PresenterInterface
+import com.example.newsapp.repository.room.NewsDatabase
 import com.example.newsapp.view.Adapter
 import com.example.newsapp.view.ViewInterface
 import kotlinx.android.synthetic.main.activity_main.*
