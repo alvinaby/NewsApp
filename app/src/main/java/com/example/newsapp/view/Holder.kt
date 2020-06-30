@@ -18,11 +18,11 @@ class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.newsTitle.text = news.title
 
         // Publisher
-        itemView.newsPublisher.text = news.publisher.name
+        itemView.newsPublisher.text = news.publisher?.name ?: "No publisher"
 
         // Open News
         itemView.setOnClickListener {
-            (itemView.context as ViewInterface).openNews(news.url)
+            news.url?.let { (itemView.context as ViewInterface).openNews(it) }
         }
     }
 }

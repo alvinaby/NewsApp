@@ -5,12 +5,13 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.newsapp.model.News
+import io.reactivex.Observable
 
 @Dao
 interface NewsDao {
-    @Query("SELECT * FROM NewsEntity")
-    fun getNews(): List<NewsEntity>
+    @Query("SELECT * FROM NewsDb")
+    fun getNews(): Observable<List<News>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertNews(news: List<NewsEntity>)
+    fun insertNews(news: List<News>)
 }
