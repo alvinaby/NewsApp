@@ -1,4 +1,4 @@
-package com.example.newsapp.repository.room
+package com.example.newsapp.room
 
 import androidx.room.Dao
 import androidx.room.Insert

@@ -8,11 +8,13 @@ import android.util.Log
 import android.view.Gravity
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.Room
 import com.example.newsapp.model.News
 import com.example.newsapp.presenter.Presenter
 import com.example.newsapp.presenter.PresenterInterface
-import com.example.newsapp.repository.room.NewsDatabase
+import com.example.newsapp.repository.MainRepo
+import com.example.newsapp.repository.local.LocalNewsRepo
+import com.example.newsapp.room.NewsDatabase
+import com.example.newsapp.repository.remote.RemoteNewsRepo
 import com.example.newsapp.view.Adapter
 import com.example.newsapp.view.ViewInterface
 import kotlinx.android.synthetic.main.activity_main.*
@@ -26,10 +28,16 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         ThemePref(this).checkTheme()
         themeBtn.setOnClickListener { ThemePref(this).changeTheme() }
 
-        NewsDatabase.createDb(this)
+        // News Database
+        val db = NewsDatabase.createDb(this)
+        val localNewsRepo = LocalNewsRepo(db.newsDao())
+        val remoteNewsRepo = RemoteNewsRepo()
+        val mainRepo = MainRepo(localNewsRepo, remoteNewsRepo)
+
+        Log.i("create $db", "database created")
 
         // News List
-        presenter = Presenter(this)
+        presenter = Presenter(this, mainRepo)
         presenter.loadNews()
 
         // Navigation Bar
@@ -45,7 +53,6 @@ class MainActivity : AppCompatActivity(), ViewInterface {
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter = Presenter(this)
         presenter.disposeNews()
     }
 
@@ -56,7 +63,7 @@ class MainActivity : AppCompatActivity(), ViewInterface {
     }
 
     override fun onError() {
-        val toast = Toast.makeText(this, "No news found, please check your connection", Toast.LENGTH_LONG)
+        val toast = Toast.makeText(this, "No news found", Toast.LENGTH_LONG)
         toast.setGravity(Gravity.CENTER, 0, 0)
         toast.show()
     }
