@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         ThemePref(this).checkTheme()
         themeBtn.setOnClickListener { ThemePref(this).changeTheme() }
 
+        NewsDatabase.createDb(this)
+
         // News List
         presenter = Presenter(this)
         presenter.loadNews()
