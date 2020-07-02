@@ -27,10 +27,10 @@ class MainActivity : AppCompatActivity(), ViewInterface {
 
         // News Database
         val newsDb = NewsDatabase.createDb(this)
-        val mainRepo = NewsRepo(newsDb.newsDao())
+        val newsRepo = NewsRepo(newsDb.newsDao())
 
         // News List
-        presenter = Presenter(this, mainRepo)
+        presenter = Presenter(this, newsRepo)
         presenter.loadNews()
 
         // Navigation Bar
