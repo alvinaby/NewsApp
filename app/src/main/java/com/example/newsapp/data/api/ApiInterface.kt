@@ -1,4 +1,4 @@
-package com.example.newsapp.api
+package com.example.newsapp.data.api
 
 import com.example.newsapp.model.News
 import io.reactivex.Observable

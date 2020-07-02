@@ -1,25 +1,23 @@
 package com.example.newsapp.repository
 
+import com.example.newsapp.data.api.ApiService
 import com.example.newsapp.model.News
-import com.example.newsapp.repository.local.LocalNewsRepo
-import com.example.newsapp.repository.remote.RemoteNewsRepo
+import com.example.newsapp.data.room.NewsDao
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class MainRepo(
-    private val localNewsRepo: LocalNewsRepo,
-    private val remoteNewsRepo: RemoteNewsRepo
-) : MainRepoInterface {
+class NewsRepo(private val localData: NewsDao) : NewsRepoInterface {
+    private val remoteData = ApiService().retrofit()
 
     override fun getNews(): Observable<List<News>> {
         return Observable.mergeDelayError(
-            remoteNewsRepo.getNews()
-                .doOnNext { localNewsRepo.insertNews(it) }
+            remoteData.getNews()
+                .doOnNext { localData.insertNews(it) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()),
 
-            localNewsRepo.getNews()
+            localData.getNews()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
         )

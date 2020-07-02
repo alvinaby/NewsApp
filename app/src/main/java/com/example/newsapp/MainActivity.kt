@@ -4,17 +4,14 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsapp.model.News
 import com.example.newsapp.presenter.Presenter
 import com.example.newsapp.presenter.PresenterInterface
-import com.example.newsapp.repository.MainRepo
-import com.example.newsapp.repository.local.LocalNewsRepo
-import com.example.newsapp.room.NewsDatabase
-import com.example.newsapp.repository.remote.RemoteNewsRepo
+import com.example.newsapp.repository.NewsRepo
+import com.example.newsapp.data.room.NewsDatabase
 import com.example.newsapp.view.Adapter
 import com.example.newsapp.view.ViewInterface
 import kotlinx.android.synthetic.main.activity_main.*
@@ -29,12 +26,8 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         themeBtn.setOnClickListener { ThemePref(this).changeTheme() }
 
         // News Database
-        val db = NewsDatabase.createDb(this)
-        val localNewsRepo = LocalNewsRepo(db.newsDao())
-        val remoteNewsRepo = RemoteNewsRepo()
-        val mainRepo = MainRepo(localNewsRepo, remoteNewsRepo)
-
-        Log.i("create $db", "database created")
+        val newsDb = NewsDatabase.createDb(this)
+        val mainRepo = NewsRepo(newsDb.newsDao())
 
         // News List
         presenter = Presenter(this, mainRepo)
