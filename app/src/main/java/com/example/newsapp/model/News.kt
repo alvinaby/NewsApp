@@ -1,27 +1,27 @@
 package com.example.newsapp.model
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "NewsDb")
 data class News(
     @PrimaryKey @ColumnInfo(name = "id")
-    var id: String = "",
+    val id: String,
 
     @ColumnInfo(name = "title")
-    var title: String? = null,
+    val title: String,
 
     @ColumnInfo(name = "thumbnail")
-    var thumbnail: String? = null,
+    val thumbnail: String,
 
     @ColumnInfo(name = "publishTime")
-    var publishTime: String? = null,
+    val publishTime: String,
 
     @ColumnInfo(name = "url")
-    var url: String? = null,
+    val url: String,
 
-    @Ignore
-    var publisher: Publisher? = null
+    @Embedded(prefix = "publisher_")
+    val publisher: Publisher
 )
