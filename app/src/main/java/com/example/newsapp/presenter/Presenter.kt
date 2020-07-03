@@ -12,7 +12,7 @@ class Presenter(
     private var disposable: Disposable? = null
 
     override fun loadNews() {
-         disposable = newsRepo.getNewsRemote().subscribe(
+         disposable = newsRepo.getNews().subscribe(
              { view.onSuccess(it) },
              { view.onError() }
          )
