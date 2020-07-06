@@ -12,6 +12,7 @@ import com.example.newsapp.presenter.Presenter
 import com.example.newsapp.presenter.PresenterInterface
 import com.example.newsapp.repository.NewsRepo
 import com.example.newsapp.data.room.NewsDatabase
+import com.example.newsapp.utils.ThemeUtils
 import com.example.newsapp.view.Adapter
 import com.example.newsapp.view.ViewInterface
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,8 +23,10 @@ class MainActivity : AppCompatActivity(), ViewInterface {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        ThemePref(this).checkTheme()
-        themeBtn.setOnClickListener { ThemePref(this).changeTheme() }
+
+        val themeUtils = ThemeUtils(this)
+        themeUtils.checkTheme()
+        themeBtn.setOnClickListener { themeUtils.changeTheme() }
 
         // News Database
         val newsDb = NewsDatabase.createDb(this)

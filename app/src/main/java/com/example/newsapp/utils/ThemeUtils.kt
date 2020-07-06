@@ -1,16 +1,16 @@
-package com.example.newsapp
+package com.example.newsapp.utils
 
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 
-class ThemePref(context: Context) {
-    private val sharedPreferences: SharedPreferences = context.getSharedPreferences("ThemeMode", Context.MODE_PRIVATE)
+class ThemeUtils(context: Context) {
+    private val themePreferences: SharedPreferences = context.getSharedPreferences("ThemeMode", Context.MODE_PRIVATE)
     private val themeKey = "theme_type"
     private val themeDialog = AlertDialog.Builder(context)
-    private var darkMode = sharedPreferences.getInt(themeKey, 0)
-    set(value) = sharedPreferences.edit().putInt(themeKey, value).apply()
+    private var darkMode = themePreferences.getInt(themeKey, 0)
+    set(value) = themePreferences.edit().putInt(themeKey, value).apply()
 
     fun checkTheme() {
         when (darkMode) {

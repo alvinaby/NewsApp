@@ -1,0 +1,18 @@
+package com.example.newsapp.utils
+
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.net.ConnectivityManager
+
+class NetworkUtils(private val networkUtilsInterface: NetworkUtilsInterface?): BroadcastReceiver() {
+    override fun onReceive(context: Context?, intent: Intent?) {
+        networkUtilsInterface?.onNetworkChanged(isConnected(context!!))
+    }
+
+    private fun isConnected(context: Context): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = cm.activeNetworkInfo
+        return networkInfo != null && networkInfo.isConnected
+    }
+}
