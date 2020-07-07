@@ -1,6 +1,8 @@
 package com.example.newsapp
 
 import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,12 +14,14 @@ import com.example.newsapp.presenter.Presenter
 import com.example.newsapp.presenter.PresenterInterface
 import com.example.newsapp.repository.NewsRepo
 import com.example.newsapp.data.room.NewsDatabase
+import com.example.newsapp.utils.NetworkUtils
+import com.example.newsapp.utils.NetworkUtilsInterface
 import com.example.newsapp.utils.ThemeUtils
 import com.example.newsapp.view.Adapter
 import com.example.newsapp.view.ViewInterface
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), ViewInterface {
+class MainActivity : AppCompatActivity(), ViewInterface, NetworkUtilsInterface {
     private lateinit var presenter: PresenterInterface
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +31,9 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         val themeUtils = ThemeUtils(this)
         themeUtils.checkTheme()
         themeBtn.setOnClickListener { themeUtils.changeTheme() }
+
+        val intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        registerReceiver(NetworkUtils(this), intentFilter)
 
         // News Database
         val newsDb = NewsDatabase.createDb(this)
@@ -59,13 +66,19 @@ class MainActivity : AppCompatActivity(), ViewInterface {
     }
 
     override fun onError() {
-        val toast = Toast.makeText(this, "No news found", Toast.LENGTH_LONG)
-        toast.setGravity(Gravity.CENTER, 0, 0)
-        toast.show()
+        Toast.makeText(this, "No news found", Toast.LENGTH_LONG).show()
     }
 
     override fun openNews(url: String) {
         val loadNews = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(loadNews)
+    }
+
+    override fun onNetworkChanged(isConnected: Boolean) {
+        if (isConnected) {
+            Toast.makeText(this, "Loading news", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "No network connection", Toast.LENGTH_SHORT).show()
+        }
     }
 }
