@@ -1,6 +1,6 @@
 package com.example.newsapp.repository
 
-import com.example.newsapp.data.api.ApiService
+import com.example.newsapp.data.rest.ApiService
 import com.example.newsapp.model.News
 import com.example.newsapp.data.room.NewsDao
 import io.reactivex.Observable

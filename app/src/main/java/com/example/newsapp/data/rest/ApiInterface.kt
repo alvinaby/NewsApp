@@ -1,8 +1,7 @@
-package com.example.newsapp.data.api
+package com.example.newsapp.data.rest
 
 import com.example.newsapp.model.News
 import io.reactivex.Observable
-import io.reactivex.Single
 import retrofit2.http.GET
 
 interface ApiInterface {

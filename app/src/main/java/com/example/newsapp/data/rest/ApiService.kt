@@ -1,4 +1,4 @@
-package com.example.newsapp.data.api
+package com.example.newsapp.data.rest
 
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
