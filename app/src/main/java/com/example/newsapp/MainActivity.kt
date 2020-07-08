@@ -8,10 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.newsapp.data.room.NewsDatabase
 import com.example.newsapp.model.News
 import com.example.newsapp.presenter.Presenter
 import com.example.newsapp.presenter.PresenterInterface
-import com.example.newsapp.repository.NewsRepo
+import com.example.newsapp.repository.LocalRepo
+import com.example.newsapp.repository.RemoteRepo
 import com.example.newsapp.utils.NetworkUtils
 import com.example.newsapp.utils.ThemeUtils
 import com.example.newsapp.view.Adapter
@@ -61,14 +63,18 @@ class MainActivity : AppCompatActivity(), ViewInterface {
     }
 
     override fun onNetworkChanged(isConnected: Boolean) {
-        val newsRepo = NewsRepo(this)
+        val newsDb = NewsDatabase.createDb(this).newsDao()
+        val localRepo = LocalRepo(newsDb).getNews()
+        val remoteRepo = RemoteRepo(newsDb).getNews()
+
         presenter = if (isConnected) {
             Toast.makeText(this, "Loading news", Toast.LENGTH_SHORT).show()
-            Presenter(this, newsRepo.getNewsRemote())
+            Presenter(this, remoteRepo)
         } else {
             Toast.makeText(this, "No network connection", Toast.LENGTH_SHORT).show()
-            Presenter(this, newsRepo.getNewsLocal())
+            Presenter(this, localRepo)
         }
+
         presenter.loadNews()
     }
 
