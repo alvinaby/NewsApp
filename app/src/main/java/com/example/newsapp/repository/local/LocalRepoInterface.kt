@@ -1,8 +1,8 @@
-package com.example.newsapp.repository
+package com.example.newsapp.repository.local
 
 import com.example.newsapp.model.News
 import io.reactivex.Observable
 
-interface RepoInterface {
+interface LocalRepoInterface {
     fun getNews(): Observable<List<News>>
 }

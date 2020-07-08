@@ -12,8 +12,8 @@ import com.example.newsapp.data.room.NewsDatabase
 import com.example.newsapp.model.News
 import com.example.newsapp.presenter.Presenter
 import com.example.newsapp.presenter.PresenterInterface
-import com.example.newsapp.repository.LocalRepo
-import com.example.newsapp.repository.RemoteRepo
+import com.example.newsapp.repository.local.LocalRepo
+import com.example.newsapp.repository.remote.RemoteRepo
 import com.example.newsapp.utils.NetworkUtils
 import com.example.newsapp.utils.ThemeUtils
 import com.example.newsapp.view.Adapter
