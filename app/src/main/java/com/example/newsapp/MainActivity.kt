@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.newsapp.data.room.NewsDatabase
 import com.example.newsapp.model.News
 import com.example.newsapp.presenter.Presenter
 import com.example.newsapp.presenter.PresenterInterface
