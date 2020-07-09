@@ -12,6 +12,7 @@ import com.example.newsapp.data.room.NewsDatabase
 import com.example.newsapp.model.News
 import com.example.newsapp.presenter.Presenter
 import com.example.newsapp.presenter.PresenterInterface
+import com.example.newsapp.repository.MainRepo
 import com.example.newsapp.repository.local.LocalRepo
 import com.example.newsapp.repository.remote.RemoteRepo
 import com.example.newsapp.utils.NetworkUtils
@@ -32,11 +33,17 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         themeUtils.checkTheme()
         themeBtn.setOnClickListener { themeUtils.changeTheme() }
 
-        //Detect Network
+        //Detect network
         val intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
         registerReceiver(NetworkUtils(this), intentFilter)
 
-        // Navigation Bar
+        //News list using MainRepo.kt
+        val newsDb = NewsDatabase.createDb(this).newsDao()
+        val mainRepo = MainRepo(this, newsDb).getNews()
+        presenter = Presenter(this, mainRepo)
+        presenter.loadNews()
+
+        //Navigation Bar
         navbar.setOnNavigationItemSelectedListener { menu ->
             when (menu.itemId) {
                 R.id.home -> newsView.smoothScrollToPosition(0)
