@@ -11,9 +11,9 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class MainRepo(private val context: Context, newsDao: NewsDao) : MainRepoInterface {
-    private val localRepo = LocalRepo(newsDao)
-    private val remoteRepo = RemoteRepo(newsDao)
+class MainRepo(private val context: Context) : MainRepoInterface {
+    private val localRepo = LocalRepo(context)
+    private val remoteRepo = RemoteRepo()
 
     override fun getNews(): Observable<List<News>> {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -22,6 +22,7 @@ class MainRepo(private val context: Context, newsDao: NewsDao) : MainRepoInterfa
         return if (networkInfo != null && networkInfo.isConnected) {
             Toast.makeText(context, "Loading news", Toast.LENGTH_SHORT).show()
             remoteRepo.getNews()
+                .doOnNext { localRepo.insertNews(it) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
         } else {

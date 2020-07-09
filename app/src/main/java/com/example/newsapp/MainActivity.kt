@@ -22,7 +22,7 @@ import com.example.newsapp.view.Adapter
 import com.example.newsapp.view.ViewInterface
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), ViewInterface, NetworkUtilsInterface {
+class MainActivity : AppCompatActivity(), ViewInterface {
     private lateinit var presenter: PresenterInterface
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,15 +34,14 @@ class MainActivity : AppCompatActivity(), ViewInterface, NetworkUtilsInterface {
         themeUtils.checkTheme()
         themeBtn.setOnClickListener { themeUtils.changeTheme() }
 
-        //Detect network
-        val intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
-        registerReceiver(NetworkUtils(this), intentFilter)
-
         //News list using MainRepo.kt
-        val newsDb = NewsDatabase.createDb(this).newsDao()
-        val mainRepo = MainRepo(this, newsDb).getNews()
+        val mainRepo = MainRepo(this).getNews()
         presenter = Presenter(this, mainRepo)
         presenter.loadNews()
+
+        //Detect network
+//        val intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+//        registerReceiver(NetworkUtils(this), intentFilter)
 
         //Navigation Bar
         navbar.setOnNavigationItemSelectedListener { menu ->
@@ -75,10 +74,9 @@ class MainActivity : AppCompatActivity(), ViewInterface, NetworkUtilsInterface {
         startActivity(loadNews)
     }
 
-    override fun onNetworkChanged(isConnected: Boolean) {
-        val newsDb = NewsDatabase.createDb(this).newsDao()
-        val localRepo = LocalRepo(newsDb).getNews()
-        val remoteRepo = RemoteRepo(newsDb).getNews()
+/*    override fun onNetworkChanged(isConnected: Boolean) {
+        val localRepo = LocalRepo(this).getNews()
+        val remoteRepo = RemoteRepo().getNews()
 
         presenter = if (isConnected) {
             Toast.makeText(this, "Loading news", Toast.LENGTH_SHORT).show()
@@ -90,4 +88,5 @@ class MainActivity : AppCompatActivity(), ViewInterface, NetworkUtilsInterface {
 
         presenter.loadNews()
     }
+ */
 }

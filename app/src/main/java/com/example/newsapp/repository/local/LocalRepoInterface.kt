@@ -5,4 +5,5 @@ import io.reactivex.Observable
 
 interface LocalRepoInterface {
     fun getNews(): Observable<List<News>>
+    fun insertNews(news: List<News>)
 }

@@ -7,13 +7,10 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class RemoteRepo(private val newsDao: NewsDao) : RemoteRepoInterface {
-    private val apiService = ApiService().retrofit()
+class RemoteRepo : RemoteRepoInterface {
+    private val apiClient = ApiService().retrofit()
 
     override fun getNews(): Observable<List<News>> {
-        return apiService.getNews()
-            .doOnNext { newsDao.insertNews(it) }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+        return apiClient.getNews()
     }
 }
