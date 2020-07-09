@@ -3,7 +3,6 @@ package com.example.newsapp.repository
 import android.content.Context
 import android.net.ConnectivityManager
 import android.widget.Toast
-import com.example.newsapp.data.room.NewsDao
 import com.example.newsapp.model.News
 import com.example.newsapp.repository.local.LocalRepo
 import com.example.newsapp.repository.remote.RemoteRepo
