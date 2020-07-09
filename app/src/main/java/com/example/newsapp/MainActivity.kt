@@ -16,12 +16,13 @@ import com.example.newsapp.repository.MainRepo
 import com.example.newsapp.repository.local.LocalRepo
 import com.example.newsapp.repository.remote.RemoteRepo
 import com.example.newsapp.utils.NetworkUtils
+import com.example.newsapp.utils.NetworkUtilsInterface
 import com.example.newsapp.utils.ThemeUtils
 import com.example.newsapp.view.Adapter
 import com.example.newsapp.view.ViewInterface
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), ViewInterface {
+class MainActivity : AppCompatActivity(), ViewInterface, NetworkUtilsInterface {
     private lateinit var presenter: PresenterInterface
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,6 +70,11 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         Toast.makeText(this, "No news found", Toast.LENGTH_LONG).show()
     }
 
+    override fun openNews(url: String) {
+        val loadNews = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(loadNews)
+    }
+
     override fun onNetworkChanged(isConnected: Boolean) {
         val newsDb = NewsDatabase.createDb(this).newsDao()
         val localRepo = LocalRepo(newsDb).getNews()
@@ -83,10 +89,5 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         }
 
         presenter.loadNews()
-    }
-
-    override fun openNews(url: String) {
-        val loadNews = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        startActivity(loadNews)
     }
 }
