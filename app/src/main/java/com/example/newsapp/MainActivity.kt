@@ -12,8 +12,6 @@ import com.example.newsapp.model.News
 import com.example.newsapp.presenter.Presenter
 import com.example.newsapp.presenter.PresenterInterface
 import com.example.newsapp.repository.MainRepo
-import com.example.newsapp.repository.local.LocalRepo
-import com.example.newsapp.repository.remote.RemoteRepo
 import com.example.newsapp.utils.NetworkUtils
 import com.example.newsapp.utils.NetworkUtilsInterface
 import com.example.newsapp.utils.ThemeUtils
