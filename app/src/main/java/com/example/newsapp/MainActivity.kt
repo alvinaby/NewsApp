@@ -21,7 +21,7 @@ import com.example.newsapp.view.Adapter
 import com.example.newsapp.view.ViewInterface
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), ViewInterface {
+class MainActivity : AppCompatActivity(), ViewInterface, NetworkUtilsInterface {
     private lateinit var presenter: PresenterInterface
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,14 +33,12 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         themeUtils.checkTheme()
         themeBtn.setOnClickListener { themeUtils.changeTheme() }
 
-        //News list using MainRepo.kt
-        val mainRepo = MainRepo(this).getNews()
-        presenter = Presenter(this, mainRepo)
-        presenter.loadNews()
+        //Load news list
+        loadNews()
 
         //Detect network
-//        val intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
-//        registerReceiver(NetworkUtils(this), intentFilter)
+        val intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        registerReceiver(NetworkUtils(this), intentFilter)
 
         //Navigation Bar
         navbar.setOnNavigationItemSelectedListener { menu ->
@@ -53,6 +51,12 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         }
     }
 
+    private fun loadNews() {
+        val mainRepo = MainRepo(this).getNews()
+        presenter = Presenter(this, mainRepo)
+        presenter.loadNews()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         presenter.disposeNews()
@@ -62,6 +66,12 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         newsView.setHasFixedSize(true)
         newsView.layoutManager = LinearLayoutManager(this)
         newsView.adapter = Adapter(newsList)
+
+        refreshNews.setOnRefreshListener {
+            loadNews()
+            newsView.adapter = Adapter(newsList)
+            refreshNews.isRefreshing = false
+        }
     }
 
     override fun onError() {
@@ -73,19 +83,12 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         startActivity(loadNews)
     }
 
-/*    override fun onNetworkChanged(isConnected: Boolean) {
-        val localRepo = LocalRepo(this).getNews()
-        val remoteRepo = RemoteRepo().getNews()
-
-        presenter = if (isConnected) {
+    override fun onNetworkChanged(isConnected: Boolean) {
+        if (isConnected) {
             Toast.makeText(this, "Loading news", Toast.LENGTH_SHORT).show()
-            Presenter(this, remoteRepo)
         } else {
             Toast.makeText(this, "No network connection", Toast.LENGTH_SHORT).show()
-            Presenter(this, localRepo)
         }
-
-        presenter.loadNews()
     }
- */
+
 }

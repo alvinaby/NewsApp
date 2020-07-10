@@ -35,14 +35,21 @@
         android:textAllCaps="false"/>
 
     <!-- News List -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/newsView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshNews"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/themeBtn"
-        android:layout_above="@id/navbar"
-        android:paddingBottom="8dp"
-        android:clipToPadding="false"/>
+        android:layout_above="@id/navbar">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/newsView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:clipToPadding="false"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <!-- Navigation Bar -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
