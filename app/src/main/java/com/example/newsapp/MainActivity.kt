@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), ViewInterface, NetworkUtilsInterface {
     }
 
     private fun loadNews() {
-        val mainRepo = MainRepo(this).getNews()
+        val mainRepo = MainRepo(this)
         presenter = Presenter(this, mainRepo)
         presenter.loadNews()
     }
@@ -84,9 +84,7 @@ class MainActivity : AppCompatActivity(), ViewInterface, NetworkUtilsInterface {
     }
 
     override fun onNetworkChanged(isConnected: Boolean) {
-        if (isConnected) {
-            Toast.makeText(this, "Loading news", Toast.LENGTH_SHORT).show()
-        } else {
+        if (!isConnected) {
             Toast.makeText(this, "No network connection", Toast.LENGTH_SHORT).show()
         }
     }

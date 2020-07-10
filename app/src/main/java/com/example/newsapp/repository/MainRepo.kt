@@ -25,7 +25,7 @@ class MainRepo(private val context: Context) : MainRepoInterface {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
         } else {
-            Toast.makeText(context, "No network connection", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Offline mode", Toast.LENGTH_SHORT).show()
             localRepo.getNews()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
