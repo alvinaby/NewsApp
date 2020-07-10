@@ -8,10 +8,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.newsapp.data.api.ApiService
+import com.example.newsapp.data.room.NewsDatabase
 import com.example.newsapp.model.News
 import com.example.newsapp.presenter.Presenter
 import com.example.newsapp.presenter.PresenterInterface
 import com.example.newsapp.repository.MainRepo
+import com.example.newsapp.repository.local.LocalRepo
+import com.example.newsapp.repository.remote.RemoteRepo
 import com.example.newsapp.utils.NetworkUtils
 import com.example.newsapp.utils.NetworkUtilsInterface
 import com.example.newsapp.utils.ThemeUtils
@@ -19,7 +23,7 @@ import com.example.newsapp.view.Adapter
 import com.example.newsapp.view.ViewInterface
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), ViewInterface, NetworkUtilsInterface {
+class MainActivity : AppCompatActivity(), ViewInterface {
     private lateinit var presenter: PresenterInterface
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +37,12 @@ class MainActivity : AppCompatActivity(), ViewInterface, NetworkUtilsInterface {
 
         //Load news list
         loadNews()
+
+        //Refresh news list
+        refreshNews.setOnRefreshListener {
+            loadNews()
+            refreshNews.isRefreshing = false
+        }
 
         //Detect network
         val intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
@@ -50,7 +60,13 @@ class MainActivity : AppCompatActivity(), ViewInterface, NetworkUtilsInterface {
     }
 
     private fun loadNews() {
-        val mainRepo = MainRepo(this)
+        val newsDao = NewsDatabase.createDb(this).newsDao()
+        val localRepo = LocalRepo(newsDao)
+
+        val apiClient = ApiService().retrofit()
+        val remoteRepo = RemoteRepo(apiClient)
+
+        val mainRepo = MainRepo(this, localRepo, remoteRepo)
         presenter = Presenter(this, mainRepo)
         presenter.loadNews()
     }
@@ -64,21 +80,10 @@ class MainActivity : AppCompatActivity(), ViewInterface, NetworkUtilsInterface {
         newsView.setHasFixedSize(true)
         newsView.layoutManager = LinearLayoutManager(this)
         newsView.adapter = Adapter(newsList)
-
-        refreshNews.setOnRefreshListener {
-            loadNews()
-            newsView.adapter = Adapter(newsList)
-            refreshNews.isRefreshing = false
-        }
     }
 
     override fun onError() {
         Toast.makeText(this, "No news found", Toast.LENGTH_LONG).show()
-    }
-
-    override fun openNews(url: String) {
-        val loadNews = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        startActivity(loadNews)
     }
 
     override fun onNetworkChanged(isConnected: Boolean) {
@@ -87,4 +92,8 @@ class MainActivity : AppCompatActivity(), ViewInterface, NetworkUtilsInterface {
         }
     }
 
+    override fun openNews(url: String) {
+        val loadNews = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(loadNews)
+    }
 }

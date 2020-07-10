@@ -10,9 +10,11 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class MainRepo(private val context: Context) : MainRepoInterface {
-    private val localRepo = LocalRepo(context)
-    private val remoteRepo = RemoteRepo()
+class MainRepo(
+    private val context: Context,
+    private val localRepo: LocalRepo,
+    private val remoteRepo: RemoteRepo
+) : MainRepoInterface {
 
     override fun getNews(): Observable<List<News>> {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -31,4 +33,5 @@ class MainRepo(private val context: Context) : MainRepoInterface {
                 .observeOn(AndroidSchedulers.mainThread())
         }
     }
+
 }

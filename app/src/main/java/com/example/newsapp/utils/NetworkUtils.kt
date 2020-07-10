@@ -4,10 +4,11 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
+import com.example.newsapp.view.ViewInterface
 
-class NetworkUtils(private val network: NetworkUtilsInterface): BroadcastReceiver() {
+class NetworkUtils(private val view: ViewInterface): BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
-        network.onNetworkChanged(isConnected(context!!))
+        view.onNetworkChanged(isConnected(context!!))
     }
 
     private fun isConnected(context: Context): Boolean {
