@@ -1,9 +1,10 @@
 ﻿## NewsApp
-This is a simple Android app about news, and also my job interview test :D <br> This app is using MVP Architecture, Retrofit, RxJava, and Glide
+This app is using MVP Architecture, Repository Pattern, Retrofit, RxJava, Room Persistance, and Glide
 
 #### NewsApp functions:
 * View list of news
 * When user click a news, it will open the source (URL) of the news using Android built-in browser
+* Dark Mode
 
 #### API used:
 * https://storage.googleapis.com/kurio-test/mobile-engineer-android/magazine/articles
@@ -18,7 +19,13 @@ Retrofit
 * `implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'`
 
 RxJava
+* `implementation "io.reactivex.rxjava2:rxjava:2.2.10"`
 * `implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'`
 
 Glide
 * `implementation 'com.github.bumptech.glide:glide:4.11.0'`
+
+Room Persistance
+* `implementation "androidx.room:room-runtime:2.2.5"`
+* `implementation "androidx.room:room-rxjava2:2.2.5"`
+* `kapt "androidx.room:room-compiler:2.2.5"`
