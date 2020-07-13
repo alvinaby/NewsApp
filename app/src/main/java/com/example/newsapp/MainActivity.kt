@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsapp.data.api.ApiService
 import com.example.newsapp.data.room.NewsDatabase
+import com.example.newsapp.di.DaggerAppComponent
 import com.example.newsapp.model.News
 import com.example.newsapp.presenter.Presenter
 import com.example.newsapp.presenter.PresenterInterface
@@ -37,6 +38,10 @@ class MainActivity : AppCompatActivity(), ViewInterface {
 
         //Load news list
         loadNews()
+
+        //Dagger
+        val component = DaggerAppComponent.create()
+        component.inject(this)
 
         //Refresh news list
         refreshNews.setOnRefreshListener {
