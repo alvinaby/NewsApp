@@ -5,7 +5,6 @@ import com.example.newsapp.data.api.ApiInterface
 import com.example.newsapp.data.api.ApiService
 import com.example.newsapp.data.room.NewsDao
 import com.example.newsapp.data.room.NewsDatabase
-import com.example.newsapp.repository.MainRepo
 import com.example.newsapp.repository.local.LocalRepo
 import com.example.newsapp.repository.remote.RemoteRepo
 import dagger.Module
@@ -37,10 +36,4 @@ class RepoModule(val context: Context) {
     fun provideRemoteRepo(apiInterface: ApiInterface): RemoteRepo {
         return RemoteRepo(apiInterface)
     }
-
-    @Provides
-    fun provideMainRepo(context: Context, localRepo: LocalRepo, remoteRepo: RemoteRepo): MainRepo {
-        return MainRepo(context, localRepo, remoteRepo)
-    }
-
 }

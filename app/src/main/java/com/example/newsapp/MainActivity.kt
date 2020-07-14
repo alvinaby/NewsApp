@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsapp.data.api.ApiService
 import com.example.newsapp.data.room.NewsDatabase
 import com.example.newsapp.di.DaggerAppComponent
+import com.example.newsapp.di.RepoModule
 import com.example.newsapp.model.News
 import com.example.newsapp.presenter.Presenter
 import com.example.newsapp.presenter.PresenterInterface
@@ -18,7 +19,6 @@ import com.example.newsapp.repository.MainRepo
 import com.example.newsapp.repository.local.LocalRepo
 import com.example.newsapp.repository.remote.RemoteRepo
 import com.example.newsapp.utils.NetworkUtils
-import com.example.newsapp.utils.NetworkUtilsInterface
 import com.example.newsapp.utils.ThemeUtils
 import com.example.newsapp.view.Adapter
 import com.example.newsapp.view.ViewInterface
@@ -27,7 +27,7 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), ViewInterface {
     lateinit var presenter: PresenterInterface
-    //@Inject lateinit var mainRepo: MainRepo
+    @Inject lateinit var mainRepo: MainRepo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,8 +42,10 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         loadNews()
 
         //Dagger
-//        val component = DaggerAppComponent.builder().build()
-//        component.inject(this)
+        val appComponent = DaggerAppComponent.builder()
+            .repoModule(RepoModule(this)).build()
+
+        appComponent.inject(this)
 
         //Refresh news list
         refreshNews.setOnRefreshListener {
