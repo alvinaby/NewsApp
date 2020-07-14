@@ -23,9 +23,11 @@ import com.example.newsapp.utils.ThemeUtils
 import com.example.newsapp.view.Adapter
 import com.example.newsapp.view.ViewInterface
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), ViewInterface {
-    private lateinit var presenter: PresenterInterface
+    lateinit var presenter: PresenterInterface
+    //@Inject lateinit var mainRepo: MainRepo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +42,8 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         loadNews()
 
         //Dagger
-        val component = DaggerAppComponent.create()
-        component.inject(this)
+//        val component = DaggerAppComponent.builder().build()
+//        component.inject(this)
 
         //Refresh news list
         refreshNews.setOnRefreshListener {
@@ -68,8 +70,8 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         val newsDao = NewsDatabase.createDb(this).newsDao()
         val localRepo = LocalRepo(newsDao)
 
-        val apiClient = ApiService().retrofit()
-        val remoteRepo = RemoteRepo(apiClient)
+        val apiService = ApiService().retrofit()
+        val remoteRepo = RemoteRepo(apiService)
 
         val mainRepo = MainRepo(this, localRepo, remoteRepo)
         presenter = Presenter(this, mainRepo)

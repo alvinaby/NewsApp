@@ -9,9 +9,8 @@ import com.example.newsapp.repository.remote.RemoteRepo
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import javax.inject.Inject
 
-class MainRepo @Inject constructor (
+class MainRepo (
     private val context: Context,
     private val localRepo: LocalRepo,
     private val remoteRepo: RemoteRepo
