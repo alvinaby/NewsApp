@@ -10,10 +10,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsapp.di.DaggerAppComponent
 import com.example.newsapp.di.RepoModule
+import com.example.newsapp.di.PresenterModule
 import com.example.newsapp.model.News
 import com.example.newsapp.presenter.Presenter
-import com.example.newsapp.presenter.PresenterInterface
-import com.example.newsapp.repository.MainRepo
 import com.example.newsapp.utils.NetworkUtils
 import com.example.newsapp.utils.ThemeUtils
 import com.example.newsapp.view.Adapter
@@ -22,8 +21,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), ViewInterface {
-    private lateinit var presenter: PresenterInterface
-    @Inject lateinit var mainRepo: MainRepo
+    @Inject lateinit var presenter: Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,10 +57,12 @@ class MainActivity : AppCompatActivity(), ViewInterface {
     }
 
     private fun loadNews() {
-        val appComponent = DaggerAppComponent.builder().repoModule(RepoModule(this)).build()
-        appComponent.inject(this)
+        val appComponent = DaggerAppComponent.builder()
+            .presenterModule(PresenterModule(this))
+            .repoModule(RepoModule(this))
+            .build()
 
-        presenter = Presenter(this, mainRepo)
+        appComponent.inject(this)
         presenter.loadNews()
     }
 

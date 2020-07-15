@@ -3,8 +3,9 @@ package com.example.newsapp.presenter
 import com.example.newsapp.repository.MainRepo
 import com.example.newsapp.view.ViewInterface
 import io.reactivex.disposables.Disposable
+import javax.inject.Inject
 
-class Presenter(
+class Presenter @Inject constructor (
     private val view: ViewInterface,
     private val mainRepo: MainRepo
 ): PresenterInterface {
