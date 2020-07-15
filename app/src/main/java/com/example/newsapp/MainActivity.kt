@@ -8,16 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.newsapp.data.api.ApiService
-import com.example.newsapp.data.room.NewsDatabase
 import com.example.newsapp.di.DaggerAppComponent
 import com.example.newsapp.di.RepoModule
 import com.example.newsapp.model.News
 import com.example.newsapp.presenter.Presenter
 import com.example.newsapp.presenter.PresenterInterface
 import com.example.newsapp.repository.MainRepo
-import com.example.newsapp.repository.local.LocalRepo
-import com.example.newsapp.repository.remote.RemoteRepo
 import com.example.newsapp.utils.NetworkUtils
 import com.example.newsapp.utils.ThemeUtils
 import com.example.newsapp.view.Adapter
@@ -26,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), ViewInterface {
-    lateinit var presenter: PresenterInterface
+    private lateinit var presenter: PresenterInterface
     @Inject lateinit var mainRepo: MainRepo
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,12 +36,6 @@ class MainActivity : AppCompatActivity(), ViewInterface {
 
         //Load news list
         loadNews()
-
-        //Dagger
-        val appComponent = DaggerAppComponent.builder()
-            .repoModule(RepoModule(this)).build()
-
-        appComponent.inject(this)
 
         //Refresh news list
         refreshNews.setOnRefreshListener {
@@ -69,6 +59,7 @@ class MainActivity : AppCompatActivity(), ViewInterface {
     }
 
     private fun loadNews() {
+        /*
         val newsDao = NewsDatabase.createDb(this).newsDao()
         val localRepo = LocalRepo(newsDao)
 
@@ -76,6 +67,11 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         val remoteRepo = RemoteRepo(apiService)
 
         val mainRepo = MainRepo(this, localRepo, remoteRepo)
+         */
+
+        val appComponent = DaggerAppComponent.builder().repoModule(RepoModule(this)).build()
+        appComponent.inject(this)
+
         presenter = Presenter(this, mainRepo)
         presenter.loadNews()
     }
