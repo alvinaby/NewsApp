@@ -59,16 +59,6 @@ class MainActivity : AppCompatActivity(), ViewInterface {
     }
 
     private fun loadNews() {
-        /*
-        val newsDao = NewsDatabase.createDb(this).newsDao()
-        val localRepo = LocalRepo(newsDao)
-
-        val apiService = ApiService().retrofit()
-        val remoteRepo = RemoteRepo(apiService)
-
-        val mainRepo = MainRepo(this, localRepo, remoteRepo)
-         */
-
         val appComponent = DaggerAppComponent.builder().repoModule(RepoModule(this)).build()
         appComponent.inject(this)
 
