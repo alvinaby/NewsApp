@@ -1,14 +1,12 @@
 package com.example.newsapp.di
 
 import android.content.Context
-import com.example.newsapp.MainActivity
 import com.example.newsapp.data.api.ApiInterface
 import com.example.newsapp.data.api.ApiService
 import com.example.newsapp.data.room.NewsDao
 import com.example.newsapp.data.room.NewsDatabase
 import com.example.newsapp.repository.local.LocalRepo
 import com.example.newsapp.repository.remote.RemoteRepo
-import com.example.newsapp.view.ViewInterface
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
