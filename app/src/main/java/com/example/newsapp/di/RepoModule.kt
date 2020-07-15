@@ -28,7 +28,7 @@ class RepoModule(val context: Context) {
     }
 
     @Provides
-    fun provideApiService(): ApiInterface {
+    fun provideApiInterface(): ApiInterface {
         return ApiService().retrofit()
     }
 
