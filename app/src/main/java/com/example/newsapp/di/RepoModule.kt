@@ -15,31 +15,21 @@ import javax.inject.Singleton
 class RepoModule(val context: Context) {
     @Provides
     @Singleton
-    fun provideContext(): Context {
-        return context
-    }
+    fun provideContext() = context
 
     @Provides
     @Singleton
-    fun provideNewsDao(context: Context): NewsDao {
-        return NewsDatabase.createDb(context).newsDao()
-    }
+    fun provideNewsDao(context: Context) = NewsDatabase.createDb(context).newsDao()
 
     @Provides
     @Singleton
-    fun provideLocalRepo(newsDao: NewsDao): LocalRepo {
-        return LocalRepo(newsDao)
-    }
+    fun provideLocalRepo(newsDao: NewsDao) = LocalRepo(newsDao)
 
     @Provides
     @Singleton
-    fun provideApiInterface(): ApiInterface {
-        return ApiService().retrofit()
-    }
+    fun provideApiInterface() = ApiService().getApi()
 
     @Provides
     @Singleton
-    fun provideRemoteRepo(apiInterface: ApiInterface): RemoteRepo {
-        return RemoteRepo(apiInterface)
-    }
+    fun provideRemoteRepo(apiInterface: ApiInterface) = RemoteRepo(apiInterface)
 }

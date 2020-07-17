@@ -9,7 +9,5 @@ import javax.inject.Singleton
 class PresenterModule(val view: ViewInterface) {
     @Provides
     @Singleton
-    fun provideView(): ViewInterface {
-        return view
-    }
+    fun provideView() = view
 }

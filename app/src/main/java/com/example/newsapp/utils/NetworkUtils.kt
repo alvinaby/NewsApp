@@ -11,9 +11,11 @@ class NetworkUtils(private val view: ViewInterface): BroadcastReceiver() {
         view.onNetworkChanged(isConnected(context!!))
     }
 
-    private fun isConnected(context: Context): Boolean {
-        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val networkInfo = cm.activeNetworkInfo
-        return networkInfo != null && networkInfo.isConnected
+    companion object {
+        fun isConnected(context: Context): Boolean {
+            val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val networkInfo = cm.activeNetworkInfo
+            return networkInfo != null && networkInfo.isConnected
+        }
     }
 }
