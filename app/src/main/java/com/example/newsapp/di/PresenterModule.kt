@@ -7,7 +7,6 @@ import javax.inject.Singleton
 
 @Module
 class PresenterModule(val view: ViewInterface) {
-    @Provides
-    @Singleton
+    @Provides @Singleton
     fun provideView() = view
 }
