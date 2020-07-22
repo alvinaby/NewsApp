@@ -5,9 +5,10 @@ import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "NewsDb")
+@Entity(tableName = "newsEntity")
 data class News(
-    @PrimaryKey @ColumnInfo(name = "id")
+    @PrimaryKey
+    @ColumnInfo(name = "id")
     var id: String = "",
 
     @ColumnInfo(name = "title")

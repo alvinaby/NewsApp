@@ -8,7 +8,7 @@ import javax.inject.Inject
 class Presenter @Inject constructor (
     private val view: ViewInterface,
     private val mainRepo: MainRepo
-): PresenterInterface {
+) : PresenterInterface {
 
     private var disposable: Disposable? = null
 
@@ -22,4 +22,5 @@ class Presenter @Inject constructor (
     override fun disposeNews() {
         disposable?.dispose()
     }
+
 }

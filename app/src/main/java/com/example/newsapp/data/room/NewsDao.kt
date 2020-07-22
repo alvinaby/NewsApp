@@ -9,7 +9,7 @@ import io.reactivex.Observable
 
 @Dao
 interface NewsDao {
-    @Query("SELECT * FROM NewsDb")
+    @Query("SELECT * FROM newsEntity")
     fun getNews(): Observable<List<News>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

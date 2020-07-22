@@ -9,8 +9,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsapp.di.DaggerAppComponent
-import com.example.newsapp.di.RepoModule
-import com.example.newsapp.di.PresenterModule
+import com.example.newsapp.di.AppModule
 import com.example.newsapp.model.News
 import com.example.newsapp.presenter.Presenter
 import com.example.newsapp.utils.NetworkUtils
@@ -42,6 +41,7 @@ class MainActivity : AppCompatActivity(), ViewInterface {
         }
 
         //Detect network
+        @Suppress("DEPRECATION")
         val intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
         registerReceiver(NetworkUtils(this), intentFilter)
 
@@ -58,8 +58,7 @@ class MainActivity : AppCompatActivity(), ViewInterface {
 
     private fun loadNews() {
         val appComponent = DaggerAppComponent.builder()
-            .presenterModule(PresenterModule(this))
-            .repoModule(RepoModule(this))
+            .appModule(AppModule(this, this))
             .build()
 
         appComponent.inject(this)
