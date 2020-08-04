@@ -7,13 +7,10 @@
     <color name="gray">#818FA6</color>
 
     <!-- Header -->
-    <color name="header">#F0FFFF</color>
-
-    <!-- News background-->
-    <color name="newsBg">#EDEDED</color>
+    <color name="header">#B8DAF2</color>
 
     <!-- Navbar -->
-    <color name="navbar">#F0FFFF</color>
+    <color name="navbar">#B8DAF2</color>
     <color name="navbarIcon">#000000</color>
 
     <!-- Text -->
