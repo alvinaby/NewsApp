@@ -7,10 +7,10 @@
     <color name="gray">#818FA6</color>
 
     <!-- Header -->
-    <color name="header">#B8DAF2</color>
+    <color name="header">#F0FFFF</color>
 
     <!-- Navbar -->
-    <color name="navbar">#B8DAF2</color>
+    <color name="navbar">#F0FFFF</color>
     <color name="navbarIcon">#000000</color>
 
     <!-- Text -->

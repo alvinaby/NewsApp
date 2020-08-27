@@ -7,16 +7,16 @@
     <color name="gray">#818FA6</color>
 
     <!-- Header -->
-    <color name="header">#353E45</color>
+    <color name="header">#1A1B1C</color>
 
     <!-- Navbar -->
-    <color name="navbar">#353E45</color>
+    <color name="navbar">#1A1B1C</color>
     <color name="navbarIcon">#FFFFFF</color>
 
     <!-- Text -->
     <color name="text">#FFFFFF</color>
 
     <!-- Text background -->
-    <color name="textBg">#353E45</color>
+    <color name="textBg">#1A1B1C</color>
 
 </resources>
