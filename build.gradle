@@ -2,14 +2,30 @@
 
 buildscript {
     ext {
+        gradleVersion = '4.1.0'
         kotlinVersion = '1.4.10'
+        appCompatVersion = '1.2.0'
+        constraintLayoutVersion = '2.0.2'
+        legacySupportVersion = '1.0.0'
+
+        junitVersion = '4.13'
+        junitTestVersion = '1.1.2'
+        espressoCoreVersion = '3.3.0'
+
+        materialDesignVersion = '29.0.0'
+        retrofitVersion = '2.6.1'
+        rxjavaVersion = '2.2.10'
+        rxandroidVersion = '2.1.1'
+        glideVersion = '4.11.0'
+        roomVersion = '2.2.5'
+        daggerVersion = '2.27'
     }
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath "com.android.tools.build:gradle:$gradleVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 
         // NOTE: Do not place your application dependencies here; they belong
