@@ -8,17 +8,17 @@ buildscript {
         constraintLayoutVersion = '2.0.2'
         legacySupportVersion = '1.0.0'
 
-        junitVersion = '4.13'
+        junitVersion = '4.13.1'
         junitTestVersion = '1.1.2'
         espressoCoreVersion = '3.3.0'
 
         materialDesignVersion = '29.0.0'
-        retrofitVersion = '2.6.1'
+        retrofitVersion = '2.9.0'
         rxjavaVersion = '2.2.10'
         rxandroidVersion = '2.1.1'
         glideVersion = '4.11.0'
         roomVersion = '2.2.5'
-        daggerVersion = '2.27'
+        daggerVersion = '2.29.1'
     }
     repositories {
         google()
